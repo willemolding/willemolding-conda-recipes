@@ -1,0 +1,21 @@
+package:
+    name: pymeanshift
+    version: "0.2.1"
+
+source:
+    git_url: https://github.com/fjean/pymeanshift.git
+
+build:
+    number: 0
+
+requirements:
+    build:
+        - python
+        - numpy
+    run:
+        - python
+        - numpy
+
+about:
+    home: https://github.com/fjean/pymeanshift
+    summary: PyMeanShift is a Python module/extension for segmenting images using the mean shift algorithm. The PyMeanShift module/extension has been designed to use Numpy arrays, which makes it compatible with the OpenCV module "cv2" and the PIL module.
