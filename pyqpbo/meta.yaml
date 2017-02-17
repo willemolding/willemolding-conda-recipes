@@ -1,0 +1,23 @@
+package:
+    name: pyqpbo
+    version: "0.1.2"
+
+source:
+    git_url: https://github.com/pystruct/pyqpbo.git
+
+build:
+    number: 0
+
+requirements:
+    build:
+        - python
+        - numpy
+        - cython
+    run:
+        - python
+        - numpy
+        - cython
+
+about:
+    home: https://github.com/pystruct/pyqpbo
+    summary: QPBO interface and alpha expansion for Python
