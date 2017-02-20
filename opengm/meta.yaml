@@ -6,6 +6,10 @@ source:
   git_url: https://github.com/opengm/opengm
   git_tag: v2.3.6
 
+  patches:
+    - patches/patchConicBundle.patch # Yes, we're patching the patch script (ignore ssl certificate problems)
+    - patches/patchDAOOPT.sh.patch # Apparently old versions of wget don't choose the same default filename for github zip files.
+    - patches/patchPlanarity.sh.patch # Apparently the mirror at http://jgaa.info is not reliable, but the parent website is.
 
 build:
   number: 0
@@ -33,6 +37,6 @@ test:
 # in the installed package.
 
 about:
-    summary: 'A C++ Library for Discrete Graphical Models. Built with Python interface'
+    summary: 'A C++ Library for Discrete Graphical Models. Built with Python interface and external libraries QPBO, Planarity and Blossom5 (more to be added later)'
     home: https://github.com/opengm/opengm
     license: GNU General Public License (GPL)
