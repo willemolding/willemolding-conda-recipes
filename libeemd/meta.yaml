@@ -1,0 +1,32 @@
+package:
+  name: libeemd
+
+  # Transform tag:
+  # Version-1-11-0 --> 1.11.0
+  {% set tagged_version = GIT_DESCRIBE_TAG|replace("Version-","")|replace("-", ".") %}
+
+  # If we're using a non-tagged revision, append '.postN' to the version
+  {% if GIT_DESCRIBE_NUMBER|int != 0 %}
+    {% set tagged_version = tagged_version + '.post' + GIT_DESCRIBE_NUMBER %}
+  {% endif %}
+
+  version: {{tagged_version}}
+
+source:
+  git_url: https://bitbucket.org/luukko/libeemd.git
+  git_tag: HEAD
+  patches:
+    - patch.patch # patch to remove openmp flag in makefile
+
+build:
+    number: 0
+
+requirements:
+  build:
+    - gsl
+  run:
+    - gsl
+
+about:
+    home: https://bitbucket.org/luukko/libeemd.git
+    summary: libeemd is a C library for performing the ensemble empirical mode decomposition (EEMD), its complete variant (CEEMDAN) or the regular empirical mode decomposition (EMD). The details of what libeemd actually computes are available as a separate article, which you should read if you are unsure about what EMD, EEMD and CEEMDAN are.

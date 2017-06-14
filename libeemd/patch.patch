@@ -1,0 +1,10 @@
+--- Makefile	2017-06-14 16:21:07.969381194 +1000
++++ Makefile-update	2017-06-14 16:21:34.989972549 +1000
+@@ -9,7 +9,6 @@
+ commonflags := -Wall -Wextra -std=c99 -pedantic -Wno-unknown-pragmas -Wshadow -Wpointer-arith
+ commonflags += $(CFLAGS)
+ commonflags += -g -DEEMD_DEBUG=0
+-commonflags += -fopenmp
+ PREFIX ?= /usr
+ 
+ SONAME = -soname

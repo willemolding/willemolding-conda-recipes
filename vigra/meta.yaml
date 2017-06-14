@@ -1,0 +1,53 @@
+package:
+  name: vigra
+  
+  # Transform tag:
+  # Version-1-11-0 --> 1.11.0
+  {% set tagged_version = GIT_DESCRIBE_TAG|replace("Version-","")|replace("-", ".") %}
+
+  # If we're using a non-tagged revision, append '.postN' to the version
+  {% if GIT_DESCRIBE_NUMBER|int != 0 %}
+    {% set tagged_version = tagged_version + '.post' + GIT_DESCRIBE_NUMBER %}
+  {% endif %}
+
+  version: {{tagged_version}}
+
+source:
+  git_url: https://github.com/ukoethe/vigra
+  git_tag: HEAD
+
+build:
+  number: 1
+
+
+  script_env:
+    - VIGRA_SKIP_TESTS
+
+requirements:
+  build:
+    - gcc 4.8.5 # [linux]
+    - python
+    - numpy
+    - boost    1.55.0 # [py2k]
+    - lemon    1.2.4
+    - zlib     1.2*
+    - nose
+
+  run:
+    - libgcc   4.8*
+    - python
+    - numpy
+    - boost    1.55.0 # [py2k]
+    - lemon    1.2.4
+    - zlib     1.2*
+    - nose
+
+test:
+  imports:
+    - vigra
+
+about:
+  home: http://ukoethe.github.io/vigra
+  license: MIT
+  summary: Generic Programming for Computer Vision
+

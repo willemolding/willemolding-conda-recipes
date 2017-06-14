@@ -1,0 +1,36 @@
+package:
+  name: pyeemd
+
+  # Transform tag:
+  # Version-1-11-0 --> 1.11.0
+  {% set tagged_version = GIT_DESCRIBE_TAG|replace("Version-","")|replace("-", ".") %}
+
+  # If we're using a non-tagged revision, append '.postN' to the version
+  {% if GIT_DESCRIBE_NUMBER|int != 0 %}
+    {% set tagged_version = tagged_version + '.post' + GIT_DESCRIBE_NUMBER %}
+  {% endif %}
+
+  version: {{tagged_version}}
+
+source:
+  git_url: https://bitbucket.org/luukko/pyeemd.git
+  git_tag: HEAD
+  patches:
+    - patch.patch # changes how libeemd is loaded to be conda friendly
+
+build:
+    number: 0
+
+requirements:
+    build:
+        - python
+        - numpy
+        - libeemd
+    run:
+        - python
+        - numpy
+        - libeemd
+
+about:
+    home: https://bitbucket.org/luukko/pyeemd.git
+    summary: This program is a Python interface to libeemd, which is a C library for performing the ensemble empirical mode decomposition (EEMD), its complete variant (CEEMDAN) or the regular empirical mode decomposition (EMD). The details of what libeemd actually computes are available as a separate article, which you should read if you are unsure about what EMD, EEMD and CEEMDAN are.
